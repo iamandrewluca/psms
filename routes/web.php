@@ -11,6 +11,16 @@
 |
 */
 
-$router->get('/', function () use ($router) {
-    return $router->app->version();
+$router->group(['prefix' => '/api/v1/admin'], function () use ($router) {
+    $router->get('/', 'AdminController@apiIndex');
 });
+
+$router->group(['prefix' => '/api/v1'], function () use ($router) {
+    $router->get('/', 'ApplicationController@apiIndex');
+});
+
+$router->group(['prefix' => '/admin'], function () use ($router) {
+    $router->get('{any:.*}', 'AdminController@index');
+});
+
+$router->get('{any:.*}', 'ApplicationController@index');
