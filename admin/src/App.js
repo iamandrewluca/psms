@@ -3,6 +3,14 @@ import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+
+  async componentDidMount() {
+    const promise = await fetch('/api/v1/admin');
+    const res = await promise.json();
+    console.log(res);
+  }
+
+
   render() {
     return (
       <div className="App">

@@ -18,6 +18,6 @@ class AdminController extends Controller
 
     public function apiIndex()
     {
-        return 'admin api index';
+        return Category::all();
     }
 }
