@@ -1,28 +1,33 @@
-.App {
-  text-align: center;
+.video-fake {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.video-fake__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.video-fake__button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 68px;
+  height: 48px;
 }
 
-.App-title {
-  font-size: 1.5em;
+.video-fake__button-bg {
+  transition: all 0.1s ease;
 }
 
-.App-intro {
-  font-size: large;
+.video-fake:hover .video-fake__button-bg {
+  fill: #f00;
+  fill-opacity: 1;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}

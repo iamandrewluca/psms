@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 
+use App\Video;
+
 class ApplicationController extends Controller
 {
     /**
@@ -12,6 +14,6 @@ class ApplicationController extends Controller
 
     public function index()
     {
-        return 'app api index';
+        return Video::all();
     }
 }
