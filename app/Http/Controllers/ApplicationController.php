@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
 
 class ApplicationController extends Controller
 {
@@ -12,11 +11,6 @@ class ApplicationController extends Controller
     public function __construct() {}
 
     public function index()
-    {
-        return file_get_contents('../public/index.html');
-    }
-
-    public function apiIndex()
     {
         return 'app api index';
     }
