@@ -2,7 +2,8 @@
   "name": "front",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://foobar.dev",
+  "homepage": "/main",
+  "proxy": "http://hollyfoobar.local",
   "dependencies": {
     "bootstrap": "4.0.0-beta.2",
     "jquery": "^3.2.1",

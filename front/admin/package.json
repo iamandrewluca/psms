@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "homepage": "/admin",
-  "proxy": "http://foobar.dev",
+  "proxy": "http://hollyfoobar.local",
   "dependencies": {
     "bootstrap": "4.0.0-beta.2",
     "jquery": "^3.2.1",

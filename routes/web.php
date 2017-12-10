@@ -42,5 +42,5 @@ $router->group(['prefix' => '/admin'], function () use ($router) {
     });
 });
 $router->get('{any:.*}', function () {
-    return file_get_contents('../public/index.html');
+    return file_get_contents('../public/main/index.html');
 });
