@@ -26,6 +26,7 @@
         ]
     },
     "scripts": {
+        "front": "cd front/main && yarn build && cd ../admin && yarn build",
         "post-root-package-install": [
             "php -r \"copy('.env.example', '.env');\""
         ]
