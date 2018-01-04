@@ -1,7 +1,8 @@
 /vendor
-/.idea
+.idea
 Homestead.json
 Homestead.yaml
 .env
-/public/main
-/public/admin
+/public/
+!public/index.php
+!public/.htaccess

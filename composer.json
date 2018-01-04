@@ -26,7 +26,8 @@
         ]
     },
     "scripts": {
-        "front": "cd front/main && yarn build && cd ../admin && yarn build",
+        "get-mcc-mnc": "python get-mcc-mnc-table-json.py > mcc-mnc.json",
+        "frontend": "cd front/main && yarn build && cd ../admin && yarn build",
         "post-root-package-install": [
             "php -r \"copy('.env.example', '.env');\""
         ]

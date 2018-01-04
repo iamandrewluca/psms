@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 
-use App\Category;
 use App\Video;
 use Illuminate\Http\Request;
 
@@ -14,7 +13,7 @@ class VideosController extends AdminBaseController
      */
     public function __construct() {}
 
-    public function list()
+    public function index()
     {
         return Video::all();
     }

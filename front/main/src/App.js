@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import {Button, Col, Form, FormGroup, Input, Label, Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
 
 class App extends Component {
 
@@ -16,10 +17,6 @@ class App extends Component {
       this.setState({videos});
     }
   }
-
-  onClick = (e) => {
-    window.jQuery(this.modal).modal('toggle');
-  };
 
   render() {
 
@@ -49,7 +46,7 @@ class App extends Component {
             <div className="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-4">
               {videos
                 ? videos.length
-                  ? videos.map((video, idx) => idx % 2 === 0
+                  ? videos.map((video, idx) => false
                     ? <VideoEmbed key={video.id} video={video} />
                     : <VideoFake onClick={this.onClick} key={video.id} video={video} />)
                   : <div>No videos</div>
@@ -59,25 +56,47 @@ class App extends Component {
           </div>
         </div>
 
-        <div ref={ref => this.modal = ref} className="modal fade" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div className="modal-dialog" role="document">
-            <div className="modal-content">
-              <div className="modal-header">
-                <h5 className="modal-title" id="exampleModalLabel">Authenticate</h5>
-                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div className="modal-body">
-                You need to authenticate in order to watch funny videos...
-              </div>
-              <div className="modal-footer">
-                <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" className="btn btn-primary">Authenticate</button>
-              </div>
-            </div>
-          </div>
-        </div>
+        <Modal isOpen={true}>
+          <ModalHeader>
+            Authenticate
+          </ModalHeader>
+          <ModalBody>
+            <Form>
+              <FormGroup row>
+                <Label for="mcc" xs={4}>Country Code</Label>
+                <Col xs={8}>
+                  <Input type="select" name="mcc" id="mcc">
+                    <option hidden>Select a country code</option>
+                    <option value="373">+373</option>
+                    <option value="373">+373</option>
+                    <option value="373">+373</option>
+                  </Input>
+                </Col>
+              </FormGroup>
+              <FormGroup row>
+                <Label for="mnc" xs={4}>Number Code</Label>
+                <Col xs={8}>
+                  <Input type="select" name="mnc" id="mnc">
+                    <option hidden>Select a number code</option>
+                    <option value="373">+373</option>
+                    <option value="373">+373</option>
+                    <option value="373">+373</option>
+                  </Input>
+                </Col>
+              </FormGroup>
+              <FormGroup row>
+                <Label for="number" xs={4}>Number</Label>
+                <Col xs={8}>
+                  <Input type="text" name="number" id="number" />
+                </Col>
+              </FormGroup>
+            </Form>
+          </ModalBody>
+          <ModalFooter>
+            <Button color="secondary">Close</Button>
+            <Button color="primary">Authenticate</Button>
+          </ModalFooter>
+        </Modal>
       </div>
     );
   }
