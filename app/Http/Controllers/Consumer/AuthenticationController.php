@@ -5,8 +5,18 @@ namespace App\Http\Controllers\Consumer;
 
 class AuthenticationController extends ConsumerBaseController
 {
-    public function signup()
+    public function signIn()
     {
-        return [];
+        return [self::class, __FUNCTION__];
+    }
+
+    public function signUp()
+    {
+        return [self::class, __FUNCTION__];
+    }
+
+    public function signOut()
+    {
+        return [self::class, __FUNCTION__];
     }
 }

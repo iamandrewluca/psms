@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 
-use App\Video;
+use App\Eloquent\Video;
 
 class ApplicationController extends Controller
 {

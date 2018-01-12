@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 
-use App\Category;
+use App\Eloquent\Category;
 use Illuminate\Http\Request;
 
 class CategoriesController extends AdminBaseController

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 
-use App\Video;
+use App\Eloquent\Video;
 use Illuminate\Http\Request;
 
 class VideosController extends AdminBaseController

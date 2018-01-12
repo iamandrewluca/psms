@@ -94,8 +94,13 @@ $app->singleton(
 */
 
 $app->router->group([
+    'prefix' => '/api/v1',
     'namespace' => 'App\Http\Controllers',
 ], function ($router) {
+    require __DIR__.'/../routes/api.php';
+});
+
+$app->router->group(['prefix' => '/'], function ($router) {
     require __DIR__.'/../routes/web.php';
 });
 
