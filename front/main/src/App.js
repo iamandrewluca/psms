@@ -33,7 +33,7 @@ class App extends Component {
                   <a className="navbar-brand" href="/">
                     <img src={logo} width="30" height="30" alt=""
                          className="d-inline-block align-top bg-dark rounded-circle mr-2" />
-                    Our Holly Foo Bar
+                    Our Foo Bar
                   </a>
                 </nav>
               </div>
