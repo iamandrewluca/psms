@@ -56,39 +56,33 @@ class App extends Component {
           </div>
         </div>
 
-        <Modal isOpen={true}>
+        <Modal isOpen={true} size="sm">
           <ModalHeader>
             Authenticate
           </ModalHeader>
           <ModalBody>
             <Form>
-              <FormGroup row>
-                <Label for="mcc" xs={4}>Country Code</Label>
-                <Col xs={8}>
-                  <Input type="select" name="mcc" id="mcc">
-                    <option hidden>Select a country code</option>
-                    <option value="373">+373</option>
-                    <option value="373">+373</option>
-                    <option value="373">+373</option>
-                  </Input>
-                </Col>
+              <FormGroup>
+                <Label for="mcc">Country Code</Label>
+                <Input type="select" name="mcc" id="mcc">
+                  <option hidden>Select a country code</option>
+                  <option value="373">+373</option>
+                  <option value="373">+373</option>
+                  <option value="373">+373</option>
+                </Input>
               </FormGroup>
-              <FormGroup row>
-                <Label for="mnc" xs={4}>Number Code</Label>
-                <Col xs={8}>
-                  <Input type="select" name="mnc" id="mnc">
-                    <option hidden>Select a number code</option>
-                    <option value="373">+373</option>
-                    <option value="373">+373</option>
-                    <option value="373">+373</option>
-                  </Input>
-                </Col>
+              <FormGroup>
+                <Label for="mnc">Number Code</Label>
+                <Input type="select" name="mnc" id="mnc">
+                  <option hidden>Select a number code</option>
+                  <option value="373">+373</option>
+                  <option value="373">+373</option>
+                  <option value="373">+373</option>
+                </Input>
               </FormGroup>
-              <FormGroup row>
-                <Label for="number" xs={4}>Number</Label>
-                <Col xs={8}>
-                  <Input type="text" name="number" id="number" />
-                </Col>
+              <FormGroup>
+                <Label for="number">Number</Label>
+                <Input type="text" name="number" id="number" />
               </FormGroup>
             </Form>
           </ModalBody>
