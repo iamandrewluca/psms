@@ -12,10 +12,13 @@ class ExampleTest extends TestCase
      */
     public function testExample()
     {
-        $this->get('/');
-
-        $this->assertEquals(
-            $this->app->version(), $this->response->getContent()
-        );
+        $this
+            ->json('GET', '/api/v1')
+            ->seeJsonEquals([[
+                "id" => 1,
+                "videoId" => "-er_dik3qes",
+                "created_at" => "2018-01-14 19:01:08",
+                "updated_at" => "2018-01-14 19:01:08"
+            ]]);
     }
 }

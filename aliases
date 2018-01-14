@@ -248,3 +248,20 @@ function xphp() {
 
     if ! $XDEBUG_ENABLED; then xoff; fi
 }
+
+#function pw {
+#    # Register the command you want to run when changes are detected here
+#    run="clear && printf '\e[3J' && phpunit"
+#
+#    # Retrieve the custom argments. If none are provided, default to "tests"
+#    [[ -n $@ ]] && args=$@ || args="tests"
+#
+#    # Run the command first...
+#    eval "$run $args"
+#    # ...then start watching for changes—and run on change
+#    watchman-make \
+#        # Register files and folders you want to watch here
+#        -p 'app/**/*.php' 'tests/**/*.php' 'bootstrap/**/*.php' 'routes/**/*.php' \
+#        --make=$run \
+#        -t "$args"
+#}
