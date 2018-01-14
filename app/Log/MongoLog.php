@@ -47,8 +47,12 @@ class MongoLog implements LoggerInterface
     {
         $this->monolog = new MonologLogger("mongo_logger");
 
+        /**
+         * TODO: Abstract connection, get config from .env
+         * @see \Illuminate\Database\DatabaseManager
+         */
         $mongo = new Client('mongodb://localhost:27017/');
-        $mongo_handler = new MongoDBHandler($mongo, 'holyfoobar', 'holy_logs');
+        $mongo_handler = new MongoDBHandler($mongo, 'psms', 'holy_logs');
         $this->monolog->pushHandler($mongo_handler);
     }
 

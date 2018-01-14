@@ -4,6 +4,6 @@
 Homestead.json
 Homestead.yaml
 .env
-/public/
-!public/index.php
-!public/.htaccess
+/public/*
+!/public/index.php
+!/public/.htaccess
