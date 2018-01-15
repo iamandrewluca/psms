@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use App\Eloquent\User;
+use Illuminate\Auth\AuthManager;
+use Illuminate\Http\Request;
 use Illuminate\Support\ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
@@ -29,9 +31,13 @@ class AuthServiceProvider extends ServiceProvider
         // should return either a User instance or null. You're free to obtain
         // the User instance via an API token or any other method necessary.
 
-        $this->app['auth']->viaRequest('api', function ($request) {
-            if ($request->input('api_token')) {
-                return User::where('api_token', $request->input('api_token'))->first();
+        /** @var AuthManager $manager */
+        $manager = $this->app['auth'];
+
+        $manager->viaRequest('api', function ($request) {
+            /** @var Request $request */
+            if ($request->header('Api-Token')) {
+                return User::where('api_token', $request->header('Api-Token'))->first();
             }
         });
     }

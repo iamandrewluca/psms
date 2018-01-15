@@ -32,7 +32,7 @@ class FakeGuzzleHandler
     private function getResponse(RequestInterface $request)
     {
         $path = $request->getUri()->getPath();
-        
+
         switch ($path)
         {
             case '/getUser':
