@@ -1,5 +1,7 @@
 <?php
 
+use App\Handlers\FakeGuzzleHandler;
+
 require_once __DIR__.'/../vendor/autoload.php';
 
 try {
@@ -47,6 +49,12 @@ $app->singleton(
     Illuminate\Contracts\Console\Kernel::class,
     App\Console\Kernel::class
 );
+
+if ($app->environment() !== 'production') {
+    $app->singleton(GuzzleHttp\Client::class, function($app) {
+        return new GuzzleHttp\Client(['handler' => $app->make(FakeGuzzleHandler::class)]);
+    });
+}
 
 /*
 |--------------------------------------------------------------------------
