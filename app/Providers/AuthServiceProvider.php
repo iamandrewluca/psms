@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Eloquent\Admin;
 use App\Eloquent\User;
 use Illuminate\Auth\AuthManager;
 use Illuminate\Http\Request;
@@ -26,19 +27,24 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // Here you may define how you wish users to be authenticated for your Lumen
-        // application. The callback which receives the incoming request instance
-        // should return either a User instance or null. You're free to obtain
-        // the User instance via an API token or any other method necessary.
+        /** @var AuthManager $authManager */
+        $authManager = $this->app['auth'];
 
-        /** @var AuthManager $manager */
-        $manager = $this->app['auth'];
+        $users = [
+            'api' => User::class,
+            'admin-api' => Admin::class,
+        ];
 
-        $manager->viaRequest('api', function ($request) {
-            /** @var Request $request */
-            if ($request->header('Api-Token')) {
-                return User::where('api_token', $request->header('Api-Token'))->first();
-            }
-        });
+        foreach ($users as $driver => $user) {
+            $authManager->viaRequest($driver, function ($request) use ($user) {
+                /** @var Request $request */
+                $apiToken = $request->header('Api-Token');
+                if ($apiToken) {
+                    return call_user_func(array($user, 'where'), ['api_token', $apiToken])->first();
+                }
+
+                return null;
+            });
+        }
     }
 }
