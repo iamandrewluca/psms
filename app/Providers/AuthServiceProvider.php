@@ -40,7 +40,7 @@ class AuthServiceProvider extends ServiceProvider
                 /** @var Request $request */
                 $apiToken = $request->header('Api-Token');
                 if ($apiToken) {
-                    return call_user_func(array($user, 'where'), ['api_token', $apiToken])->first();
+                    return call_user_func(array($user, 'where'), 'api_token' , $apiToken)->first();
                 }
 
                 return null;

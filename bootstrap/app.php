@@ -73,6 +73,7 @@ if ($app->environment() !== 'production') {
 
 $app->routeMiddleware([
  'auth' => App\Http\Middleware\Authenticate::class,
+ 'guest' => App\Http\Middleware\StopIfAuthenticated::class,
 ]);
 
 /*

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class AdminTableSeeder extends Seeder
 {
@@ -11,6 +12,9 @@ class AdminTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        (new \App\Eloquent\Admin([
+            'email' => env('FIRST_ADMIN_EMAIL'),
+            'password' => Hash::make(env('FIRST_ADMIN_PASSWORD')),
+        ]))->save();
     }
 }
