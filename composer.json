@@ -10,7 +10,8 @@
         "vlucas/phpdotenv": "~2.2",
         "mongodb/mongodb": "^1.2",
         "guzzlehttp/guzzle": "^6.3",
-        "flipbox/lumen-generator": "^5.5"
+        "flipbox/lumen-generator": "^5.5",
+        "bensampo/laravel-enum": "^1.4"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

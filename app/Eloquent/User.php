@@ -28,5 +28,14 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      */
     protected $hidden = [
         'password',
+        'api_token',
     ];
+
+    /**
+     * Get the provider that owns the number.
+     */
+    public function provider()
+    {
+        return $this->belongsTo(NumberProvider::class);
+    }
 }
