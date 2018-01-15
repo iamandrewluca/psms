@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\BaseController;
 
-class AdminBaseController extends Controller
+class AdminBaseController extends BaseController
 {
     public function index()
     {

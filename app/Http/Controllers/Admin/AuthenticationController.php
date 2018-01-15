@@ -45,9 +45,9 @@ class AuthenticationController extends AdminBaseController
 
     public function signOut()
     {
-        $user = Admin::find(Auth::guard('admin-api')->id());
-        $user->api_token = null;
-        $user->save();
+        $admin = Admin::find(Auth::guard('admin-api')->id());
+        $admin->api_token = null;
+        $admin->save();
 
         return [
             'status' => 'SUCCESS',

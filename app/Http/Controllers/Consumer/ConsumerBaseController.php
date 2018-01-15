@@ -8,6 +8,6 @@
 
 namespace App\Http\Controllers\Consumer;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\BaseController;
 
-class ConsumerBaseController extends Controller {}
+class ConsumerBaseController extends BaseController {}
