@@ -1,27 +1,16 @@
 <?php
-
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It is a breeze. Simply tell Lumen the URIs it should respond to
-| and give it the Closure to call when that URI is requested.
-|
-*/
-
 /** @var \Laravel\Lumen\Routing\Router $router */
 
-$router->group(['prefix' => '/admin'], function () use ($router) {
-    $router->get('/', function () {
-        return file_get_contents('../public/a/index.html');
-    });
-    $router->get('{any:.*}', function () {
-        return file_get_contents('../public/a/index.html');
-    });
+$router->group([
+    'prefix' => '/api/v1',
+    'namespace' => 'App\Http\Controllers'
+], function () use ($router) {
+
+    require 'admin.php';
+    require 'consumer.php';
+    require 'provider.php';
+    require 'web-hooks.php';
+
 });
 
-$router->get('{any:.*}', function () {
-    return file_get_contents('../public/m/index.html');
-});
+require 'static.php';

@@ -108,15 +108,7 @@ $app->register(\SwaggerLume\ServiceProvider::class);
 |
 */
 
-$app->router->group([
-    'prefix' => '/api/v1',
-    'namespace' => 'App\Http\Controllers',
-], function ($router) {
-    require __DIR__.'/../routes/api.php';
-});
-
-$app->router->group(['prefix' => '/'], function ($router) {
-    require __DIR__.'/../routes/web.php';
-});
+$router = $app->router;
+require __DIR__.'/../routes/web.php';
 
 return $app;

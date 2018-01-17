@@ -4,12 +4,7 @@
         "title": "PSMS API",
         "version": "0.1"
     },
-    "host": "example.com",
     "basePath": "/api",
-    "schemes": [
-        "http",
-        "https"
-    ],
     "paths": {},
     "definitions": {}
 }

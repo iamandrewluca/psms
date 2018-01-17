@@ -8,6 +8,13 @@
 
 namespace App\Http\Controllers\Consumer;
 
+use App\Eloquent\Video;
 use App\Http\Controllers\BaseController;
 
-class ConsumerBaseController extends BaseController {}
+class ConsumerBaseController extends BaseController
+{
+    public function index()
+    {
+        return Video::all();
+    }
+}

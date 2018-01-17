@@ -8,11 +8,6 @@ use Illuminate\Http\Request;
 
 class VideosController extends AdminBaseController
 {
-    /**
-     * Create a new controller instance.
-     */
-    public function __construct() {}
-
     public function index()
     {
         return Video::all();
