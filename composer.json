@@ -11,7 +11,8 @@
         "mongodb/mongodb": "^1.2",
         "guzzlehttp/guzzle": "^6.3",
         "flipbox/lumen-generator": "^5.5",
-        "bensampo/laravel-enum": "^1.4"
+        "bensampo/laravel-enum": "^1.4",
+        "darkaonline/swagger-lume": "^5.5"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

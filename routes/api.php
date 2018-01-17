@@ -6,8 +6,16 @@
  * Time: 05:13
  */
 
-
 /** @var \Laravel\Lumen\Routing\Router $router */
+
+/**
+ * @SWG\Info(title="PSMS API", version="0.1")
+ * @SWG\Swagger(
+ *   schemes={"http"},
+ *   host="example.com",
+ *   basePath="/api"
+ * )
+ */
 
 // WEB HOOKS
 $router->group(['prefix' => '/webhooks'], function () use ($router) {});

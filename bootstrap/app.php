@@ -56,6 +56,8 @@ if ($app->environment() !== 'production') {
     });
 }
 
+$app->configure('swagger-lume');
+
 /*
 |--------------------------------------------------------------------------
 | Register Middleware
@@ -92,6 +94,8 @@ $app->register(BenSampo\Enum\EnumServiceProvider::class);
 // $app->register(App\Providers\AppServiceProvider::class);
 $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
+$app->register(\SwaggerLume\ServiceProvider::class);
+
 
 /*
 |--------------------------------------------------------------------------
