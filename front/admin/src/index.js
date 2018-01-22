@@ -17,7 +17,13 @@ import App from "./App"
 
 import * as reducers from './reducers'
 
-const history = createHistory()
+const historySettings = {}
+
+if (process.env.NODE_ENV !== `development`) {
+  historySettings.basename = 'admin'
+}
+
+const history = createHistory(historySettings)
 
 const middlewares = [routerMiddleware(history), thunk]
 
