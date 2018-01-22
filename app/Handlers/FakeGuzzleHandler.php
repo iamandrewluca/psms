@@ -16,6 +16,11 @@ use Psr\Http\Message\RequestInterface;
 
 class FakeGuzzleHandler
 {
+    /**
+     * @param RequestInterface $request
+     * @param $options
+     * @return Promise
+     */
     public function __invoke(RequestInterface $request, $options)
     {
         $promise = new Promise(function () use ($request, &$promise) {

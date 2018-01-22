@@ -8,13 +8,14 @@
 
 namespace App\Http\Controllers\Consumer;
 
-use App\Eloquent\Video;
+
+use App\Eloquent\NumberProvider;
 use App\Http\Controllers\BaseController;
 
 class ConsumerBaseController extends BaseController
 {
-    public function index()
+    public function providers()
     {
-        return Video::all();
+        return NumberProvider::all();
     }
 }

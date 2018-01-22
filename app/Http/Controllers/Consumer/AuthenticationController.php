@@ -70,4 +70,6 @@ class AuthenticationController extends ConsumerBaseController
 //        $user->save();
 //
 //        return $user;
+
+        return $request->all();
     }}
