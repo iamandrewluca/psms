@@ -14,9 +14,15 @@ class Home extends React.Component {
     const promise = await window.fetch('/api/v1/admin/videos', {
       headers: new Headers({
         'Content-Type': 'application/json',
-        'Api-Token': localStorage.getItem('api_token')
+        'Api-Token': localStorage.getItem('admin-api-token')
       })
     });
+
+    if (promise.status === 401) {
+      localStorage.removeItem('admin-api-token')
+      window.location.reload()
+      return
+    }
 
     if (promise.status === 200) {
       const videos = await promise.json();
@@ -42,7 +48,7 @@ class Home extends React.Component {
       body: JSON.stringify({videoId}),
       headers: new Headers({
         'Content-Type': 'application/json',
-        'Api-Token': localStorage.getItem('api_token')
+        'Api-Token': localStorage.getItem('admin-api-token')
       })
     });
 
@@ -69,7 +75,7 @@ class Home extends React.Component {
       method: 'DELETE',
       headers: new Headers({
         'Content-Type': 'application/json',
-        'Api-Token': localStorage.getItem('api_token')
+        'Api-Token': localStorage.getItem('admin-api-token')
       })
     });
 

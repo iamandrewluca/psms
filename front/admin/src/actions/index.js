@@ -48,6 +48,6 @@ export const signIn = (e) => async (dispatch) => {
 
   const token = data['api_token']
 
-  localStorage.setItem('api_token', token)
+  localStorage.setItem('admin-api-token', token)
   dispatch(signInSuccess(token))
 }
