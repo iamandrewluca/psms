@@ -103,24 +103,27 @@ export const signUpConsumerFailure = () => ({
 })
 
 export const signUpConsumer = (e) => async (dispatch) => {
-  e.preventDefault()
-
-  dispatch(signUpConsumerRequest())
-
-  const data = formToJSON(e.target.elements)
-  let err, response
-
-  [err, response] = await to(fetch('/api/v1/consumer/signup', {
-    method: 'POST',
-    headers: new Headers({
-      'Content-Type': 'application/json'
-    }),
-    body: JSON.stringify(data),
-  }))
-
-  if (err || !response || response.status !== 200) {
-    dispatch(signUpConsumerFailure())
-  }
-
-  dispatch(signUpConsumerSuccess())
+  // e.preventDefault()
+  //
+  // dispatch(signUpConsumerRequest())
+  //
+  // let err, response
+  //
+  // [err, response] = await to(fetch('/api/v1/consumer/signup', {
+  //   method: 'POST',
+  //   headers: new Headers({
+  //     'Content-Type': 'application/json'
+  //   }),
+  //   body: JSON.stringify({
+  //     mcc: e.target.mcc.value,
+  //     mnc: e.target.mnc.value,
+  //     number: e.target.number.value,
+  //   }),
+  // }))
+  //
+  // if (err || !response || response.status !== 200) {
+  //   dispatch(signUpConsumerFailure())
+  // }
+  //
+  // dispatch(signUpConsumerSuccess())
 }

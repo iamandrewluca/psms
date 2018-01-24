@@ -15,6 +15,6 @@ class VideoController extends ConsumerBaseController
 {
     public function index()
     {
-        return Video::all();
+        return Video::orderBy('created_at', SORT_ASC)->get();
     }
 }

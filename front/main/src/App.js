@@ -49,7 +49,7 @@ class App extends Component {
         </div>
 
         <Modal isOpen={modalOpen} size="sm">
-          <Form onSubmit={this.props.actions.signUpConsumer}>
+          <Form onSubmit={this.props.actions.signUpConsumer} action="/api/v1/consumer/signup" method="POST">
             <ModalHeader>
               Authenticate
             </ModalHeader>
