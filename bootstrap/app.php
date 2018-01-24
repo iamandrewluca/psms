@@ -51,7 +51,7 @@ $app->singleton(
 );
 
 if ($app->environment() !== 'production') {
-    $app->singleton(GuzzleHttp\Client::class, function($app) {
+    $app->singleton(GuzzleHttp\Client::class, function(Laravel\Lumen\Application $app) {
         return new GuzzleHttp\Client(['handler' => $app->make(FakeGuzzleHandler::class)]);
     });
 }
