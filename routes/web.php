@@ -1,6 +1,10 @@
 <?php
-/** @var \Laravel\Lumen\Routing\Router $router */
 
+/**
+ * @SWG\Info(title="PSMS", version="0.1")
+ */
+
+/** @var \Laravel\Lumen\Routing\Router $router */
 $router->group([
     'prefix' => '/api/v1',
     'namespace' => 'App\Http\Controllers'

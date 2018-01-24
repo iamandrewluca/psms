@@ -1,10 +1,59 @@
 {
     "swagger": "2.0",
     "info": {
-        "title": "PSMS API",
+        "title": "PSMS",
         "version": "0.1"
     },
-    "basePath": "/api",
-    "paths": {},
+    "paths": {
+        "/api/v1/consumer/signup": {
+            "post": {
+                "summary": "Authenticate user",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
+        "/api/v1/consumer/videos": {
+            "get": {
+                "summary": "Gets a list of videos",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
+        "/api/v1/consumer/providers": {
+            "get": {
+                "summary": "Get a list with all available providers mmc/mnc",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
+        "/api/v1/webhooks/callback": {
+            "get": {
+                "summary": "Callback where provider will redirect with sessionID",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        }
+    },
     "definitions": {}
 }
