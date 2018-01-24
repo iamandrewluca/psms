@@ -1,10 +1,10 @@
 import React from 'react'
 import {Redirect, Route} from "react-router"
 
-const GuestRoute = ({isNotAuthenticated, component: Component, ...rest }) => (
+const GuestRoute = ({isAuthenticated, component: Component, ...rest }) => (
   <Route {...rest} render={props => (
-    isNotAuthenticated ? (
-      <Component isNotAuthenticated={isNotAuthenticated} {...props}/>
+    !isAuthenticated ? (
+      <Component {...props}/>
     ) : (
       <Redirect to={{
         pathname: '/',

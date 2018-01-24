@@ -3,7 +3,7 @@ import {connect} from "react-redux"
 import {bindActionCreators} from "redux"
 import * as actions from "../actions"
 
-const Login = ({actions, loading}) => (
+const SignIn = ({actions, loading}) => (
   <form onSubmit={actions.signIn}>
     <fieldset className="card my-3" disabled={loading}>
       <div className="card-header">
@@ -36,4 +36,4 @@ function mapDispatchToProps(dispatch) {
   return { actions: bindActionCreators(actions, dispatch) }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

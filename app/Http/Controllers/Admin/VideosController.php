@@ -10,7 +10,9 @@ class VideosController extends AdminBaseController
 {
     public function index()
     {
-        return Video::all();
+        $videos = Video::orderBy('created_at', SORT_DESC)->get();
+
+        return $videos;
     }
 
     public function create(Request $request)

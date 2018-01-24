@@ -19,8 +19,8 @@ import * as reducers from './reducers'
 
 const historySettings = {}
 
-if (process.env.NODE_ENV !== `development`) {
-  historySettings.basename = 'admin'
+if (process.env.NODE_ENV === `production`) {
+  historySettings.basename = '/admin'
 }
 
 const history = createHistory(historySettings)
@@ -42,9 +42,7 @@ const store = createStore(
 ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
-      <div>
-        <Route path="/" component={App}/>
-      </div>
+      <Route path="/" component={App}/>
     </ConnectedRouter>
   </Provider>,
   document.getElementById('root')

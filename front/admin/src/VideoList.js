@@ -17,12 +17,16 @@ export default VideoList
 
 function VideoListItem({video, deleteVideo}) {
   return (
-    <div className="list-group-item mb-2 d-flex justify-content-between align-items-center">
-      <span className="d-flex align-items-center">
-        <div className="badge badge-warning badge-pill mr-2">{video.id}</div>
-        {video.videoId}
-      </span>
-      <button onClick={deleteVideo} className="btn btn-link text-danger p-0 px-2">&times;</button>
+    <div className="list-group-item d-flex justify-content-between align-items-center">
+      <div className="media align-items-center">
+        <img className="mr-3 w-25" src={`http://img.youtube.com/vi/${video.videoId}/sddefault.jpg`} alt="" />
+        <div className="media-body">
+          <h5 className="m-0 d-flex align-items-center">
+            {video.videoId}
+            <button onClick={deleteVideo} className="btn btn-link text-danger ml-auto">&times;</button>
+          </h5>
+        </div>
+      </div>
     </div>
   )
 }

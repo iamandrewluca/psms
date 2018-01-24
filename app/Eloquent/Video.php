@@ -2,6 +2,11 @@
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class Video
+ * @property string videoId
+ * @package App\Eloquent
+ */
 class Video extends Model {
 
     protected $fillable = [];
