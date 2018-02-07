@@ -33,15 +33,15 @@ class MerchantController extends BaseController
 //        }
 
         // check the signature
-        $secret = ''; // insert your secret between ''
-        if(empty($secret) || !$this->check_signature($_GET, $secret)) {
-            header("HTTP/1.0 404 Not Found");
-            die("Error: Invalid signature");
-        }
-
-        $sender = $_GET['sender'];
-        $message = $_GET['message'];
-        $message_id = $_GET['message_id'];//unique id
+//        $secret = ''; // insert your secret between ''
+//        if(empty($secret) || !$this->check_signature($_GET, $secret)) {
+//            header("HTTP/1.0 404 Not Found");
+//            die("Error: Invalid signature");
+//        }
+//
+//        $sender = $_GET['sender'];
+//        $message = $_GET['message'];
+//        $message_id = $_GET['message_id'];//unique id
 
         //hint:use message_id to log your messages
         //additional parameters: country, price, currency, operator, keyword, shortcode
@@ -52,10 +52,10 @@ class MerchantController extends BaseController
         echo($reply);
 
         // only grant virtual credits to account, if payment has been successful.
-        if (preg_match("/OK/i", $_GET['status'])
-            || (preg_match("/MO/i", $_GET['billing_type']) && preg_match("/pending/i", $_GET['status']))) {
-            // add_credits($message);
-        }
+//        if (preg_match("/OK/i", $_GET['status'])
+//            || (preg_match("/MO/i", $_GET['billing_type']) && preg_match("/pending/i", $_GET['status']))) {
+//            // add_credits($message);
+//        }
     }
 
     private function check_signature($params_array, $secret) {
