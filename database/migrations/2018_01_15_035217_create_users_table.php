@@ -22,6 +22,8 @@ class CreateUsersTable extends Migration
             $table->integer('provider_id')->unsigned();
             $table->foreign('provider_id')->references('id')->on('number_providers');
 
+            $table->unique('number', 'provider_id');
+
             $table->timestamps();
         });
     }

@@ -1,4 +1,4 @@
-import {FETCH_PROVIDERS_SUCCESS, FETCH_VIDEOS_SUCCESS, TOGGLE_MODAL} from "../actions"
+import {FETCH_PROVIDERS_SUCCESS, FETCH_VIDEOS_SUCCESS, SIGN_UP_CONSUMER_SUCCESS, TOGGLE_SIGN_UP_MODAL} from "../actions"
 import {getProvidersBy} from "../utils/getProvidersBy"
 
 const initialState = {
@@ -7,24 +7,36 @@ const initialState = {
   countries: null,
   networks: null,
   videos: null,
-  signInModal: false,
+  signUpModal: false,
+  authorizeModal: false,
 }
 
 export function app(state = initialState, action) {
   switch (action.type) {
+
     case FETCH_VIDEOS_SUCCESS:
       return Object.assign({}, state, {videos: action.videos})
+
     case FETCH_PROVIDERS_SUCCESS:
       const providers = action.providers
       const countries = getProvidersBy(providers, 'mcc')
-      const networks = getProvidersBy(providers, 'mnc')
+      const networks = getProvidersBy(providers, 'id')
       return Object.assign({}, state, {
         providers,
         countries,
         networks,
       })
-    case TOGGLE_MODAL:
-      return Object.assign({}, state, {signInModal: action.isOpen})
+
+    case SIGN_UP_CONSUMER_SUCCESS:
+      localStorage.setItem('token', action.payload.token)
+      return Object.assign({}, state, {
+        signUpModal: false,
+        authorizeModal: true,
+      })
+
+    case TOGGLE_SIGN_UP_MODAL:
+      return Object.assign({}, state, {signUpModal: action.isOpen})
+
     default:
       return state
   }

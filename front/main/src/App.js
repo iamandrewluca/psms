@@ -23,7 +23,8 @@ class App extends Component {
     const {
       videos,
       token,
-      modalOpen,
+      signUpModal,
+      authorizeModal,
       providers,
       countries,
       networks,
@@ -48,8 +49,8 @@ class App extends Component {
           </div>
         </div>
 
-        <Modal isOpen={modalOpen} size="sm">
-          <Form onSubmit={this.props.actions.signUpConsumer} action="/api/v1/consumer/signup" method="POST">
+        <Modal isOpen={signUpModal} size="sm">
+          <Form onSubmit={this.props.actions.signUpConsumer}>
             <ModalHeader>
               Authenticate
             </ModalHeader>
@@ -73,8 +74,8 @@ class App extends Component {
                         <Label for="mnc">Network</Label>
                         <Input type="select" name="mnc" id="mnc">
                           <option hidden>Select a network</option>
-                          {Object.entries(networks).map(([_, network]) => (
-                            <option key={network.mnc} value={network.mnc} title={`${network.network}`}>
+                          {Object.entries(networks).map(([_, network], idx) => (
+                            <option key={idx} value={network.mnc} title={`${network.network}`}>
                               {network.network}
                             </option>
                           ))}
@@ -96,6 +97,21 @@ class App extends Component {
             </ModalFooter>
           </Form>
         </Modal>
+
+
+        <Modal isOpen={authorizeModal} size="sm">
+          <Form onSubmit={this.props.actions.signUpConsumer}>
+            <ModalHeader>
+              Authorize
+            </ModalHeader>
+            <ModalBody>
+              <a href="sms:">Send SMS to #</a>
+            </ModalBody>
+            <ModalFooter>
+              <a href="#" className="small text-secondary">Recheck status</a>
+            </ModalFooter>
+          </Form>
+        </Modal>
       </div>
     );
   }
@@ -105,7 +121,8 @@ function mapStateToProps(state) {
   return {
     videos: state.app.videos,
     token: state.app.apiToken,
-    modalOpen: state.app.signInModal,
+    signUpModal: state.app.signUpModal,
+    authorizeModal: state.app.authorizeModal,
     providers: state.app.providers,
     countries: state.app.countries,
     networks: state.app.networks,

@@ -19,7 +19,7 @@ class NumberProvidersTableSeeder extends Seeder
         $json = File::get('mcc-mnc.json');
         $data = json_decode($json, true);
         foreach ($data as &$obj) {
-            $obj['flow'] = Flows::getRandomValue();
+            $obj['flow'] = Flows::SMS;
         }
         NumberProvider::insert($data);
     }

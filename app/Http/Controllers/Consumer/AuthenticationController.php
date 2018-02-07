@@ -9,6 +9,7 @@
 namespace App\Http\Controllers\Consumer;
 
 
+use App\Eloquent\NumberProvider;
 use App\Eloquent\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
@@ -60,19 +61,26 @@ class AuthenticationController extends ConsumerBaseController
 
     public function signUp(Request $request)
     {
-//        $this->validate($request, [
-//            'name' => 'required',
-//            'email' => 'required|email|unique:users',
-//            'password' => 'required|min:8',
-//        ]);
-//
-//        $user = new User($request->only(['name', 'email']));
-//        $user->password = Hash::make($request->input('password'));
-//        $user->api_token = str_random(60);
-//
-//        $user->save();
-//
-//        return $user;
+        $this->validate($request, [
+            'mcc' => 'required',
+            'mnc' => 'required',
+            'number' => 'required',
+        ]);
 
-        return RedirectResponse::create('/api/v1/webhooks/provider');
+        $provider = NumberProvider
+            ::where('mnc', $request->input('mnc'))
+            ->where('mcc', $request->input('mcc'))
+            ->firstOrFail();
+
+        $user = new User($request->only(['number']));
+        $user->validated = false;
+        $user->api_token = str_random(60);
+
+        $user->provider()->associate($provider);
+        $user->save();
+
+        return JsonResponse::create([
+            'user' => $user,
+            'token' => $user->api_token,
+        ]);
     }}

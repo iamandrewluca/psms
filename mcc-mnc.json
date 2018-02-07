@@ -270,5 +270,13 @@
         "iso": "eg",
         "country_code": "20",
         "mnc": "02"
+    },
+    {
+        "network": "Orange",
+        "country": "Moldova",
+        "mcc": "259",
+        "iso": "md",
+        "country_code": "373",
+        "mnc": "01"
     }
 ]
