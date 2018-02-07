@@ -12,7 +12,6 @@ $router->group([
 
     require 'admin.php';
     require 'consumer.php';
-    require 'provider.php';
     require 'web-hooks.php';
 
 });
