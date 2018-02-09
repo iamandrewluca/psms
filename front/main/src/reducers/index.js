@@ -1,4 +1,7 @@
-import {FETCH_PROVIDERS_SUCCESS, FETCH_VIDEOS_SUCCESS, SIGN_UP_CONSUMER_SUCCESS, TOGGLE_SIGN_UP_MODAL} from "../actions"
+import {
+  COUNTRY_SELECTED, FETCH_PROVIDERS_SUCCESS, FETCH_VIDEOS_SUCCESS, SIGN_UP_CONSUMER_SUCCESS,
+  TOGGLE_SIGN_UP_MODAL
+} from "../actions"
 import {getProvidersBy} from "../utils/getProvidersBy"
 
 const initialState = {
@@ -20,7 +23,7 @@ export function app(state = initialState, action) {
     case FETCH_PROVIDERS_SUCCESS:
       const providers = action.providers
       const countries = getProvidersBy(providers, 'mcc')
-      const networks = getProvidersBy(providers, 'id')
+      const networks = providers
       return Object.assign({}, state, {
         providers,
         countries,
@@ -36,6 +39,11 @@ export function app(state = initialState, action) {
 
     case TOGGLE_SIGN_UP_MODAL:
       return Object.assign({}, state, {signUpModal: action.isOpen})
+
+    case COUNTRY_SELECTED:
+      const showNetworks = state.providers
+        .filter(provider => provider.mcc === action.payload.target.value)
+      return Object.assign({}, state, {networks: showNetworks})
 
     default:
       return state

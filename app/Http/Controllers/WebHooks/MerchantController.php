@@ -17,34 +17,34 @@ class MerchantController extends BaseController
 
     public function report(Request $request, MongoLog $logger)
     {
-        $logger->log('INFO', (string)$request);
+        $logger->log('REPORT', (string)$request, [
+            'merchant' => 'FORTUMO'
+        ]);
         return JsonResponse::create();
     }
 
-    public function callback(Request $request)
+    public function msisdn(Request $request, MongoLog $logger) {
+        $logger->log('MSISDN', (string)$request);
+    }
+
+    public function callback(Request $request, MongoLog $logger)
     {
-        $billing_reports_enabled = false;
+        $logger->log('BILL', (string)$request, [
+            'merchant' => 'FORTUMO'
+        ]);
 
-        // check that the request comes from Fortumo server
-//        if(!in_array($_SERVER['REMOTE_ADDR'],
-//            array('1.2.3.4', '2.3.4.5'))) {
-//            header("HTTP/1.0 403 Forbidden");
-//            die("Error: Unknown IP");
-//        }
+        $secret = env('FORTUMO_SECRET');
+        if(empty($secret) || !$this->check_signature($_GET, $secret)) {
+            header("HTTP/1.0 404 Not Found");
+            die("Error: Invalid signature");
+        }
 
-        // check the signature
-//        $secret = ''; // insert your secret between ''
-//        if(empty($secret) || !$this->check_signature($_GET, $secret)) {
-//            header("HTTP/1.0 404 Not Found");
-//            die("Error: Invalid signature");
-//        }
-//
-//        $sender = $_GET['sender'];
-//        $message = $_GET['message'];
-//        $message_id = $_GET['message_id'];//unique id
+        $sender = $_GET['sender'];
+        $message = $_GET['message'];
+        $message_id = $_GET['message_id'];
 
-        //hint:use message_id to log your messages
-        //additional parameters: country, price, currency, operator, keyword, shortcode
+        // hint:use message_id to log your messages
+        // additional parameters: country, price, currency, operator, keyword, shortcode
         // do something with $sender and $message
         $reply = 'Thank you for using our service.';
 
@@ -52,10 +52,10 @@ class MerchantController extends BaseController
         echo($reply);
 
         // only grant virtual credits to account, if payment has been successful.
-//        if (preg_match("/OK/i", $_GET['status'])
-//            || (preg_match("/MO/i", $_GET['billing_type']) && preg_match("/pending/i", $_GET['status']))) {
-//            // add_credits($message);
-//        }
+        if (preg_match("/OK/i", $_GET['status'])
+            || (preg_match("/MO/i", $_GET['billing_type']) && preg_match("/pending/i", $_GET['status']))) {
+//             add_credits($message);
+        }
     }
 
     private function check_signature($params_array, $secret) {

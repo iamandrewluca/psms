@@ -127,3 +127,9 @@ export const signUpConsumer = (e) => async (dispatch) => {
 
   return dispatch(signUpConsumerSuccess(response))
 }
+
+export const COUNTRY_SELECTED = "COUNTRY_SELECTED"
+export const countrySelected = (data) => ({
+  type: COUNTRY_SELECTED,
+  payload: data
+})

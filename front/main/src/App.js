@@ -61,7 +61,7 @@ class App extends Component {
                     <div>
                       <FormGroup>
                         <Label for="mcc">Country Code</Label>
-                        <Input type="select" name="mcc" id="mcc">
+                        <Input type="select" name="mcc" id="mcc" onChange={this.props.actions.countrySelected}>
                           <option hidden>Select a country code</option>
                           {Object.entries(countries).map(([_, country]) => (
                             <option key={country.mcc} value={country.mcc} title={`${country.country} (${country.iso})`}>
@@ -83,7 +83,7 @@ class App extends Component {
                       </FormGroup>
                       <FormGroup>
                         <Label for="number">Number</Label>
-                        <Input type="text" name="number" id="number" />
+                        <Input type="number" name="number" id="number" />
                       </FormGroup>
                     </div>
                   )
@@ -105,7 +105,7 @@ class App extends Component {
               Authorize
             </ModalHeader>
             <ModalBody>
-              <a href="sms:">Send SMS to #</a>
+              Send SMS to #
             </ModalBody>
             <ModalFooter>
               <a href="#" className="small text-secondary">Recheck status</a>
