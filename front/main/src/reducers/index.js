@@ -1,11 +1,12 @@
 import {
-  COUNTRY_SELECTED, FETCH_PROVIDERS_SUCCESS, FETCH_VIDEOS_SUCCESS, SIGN_UP_CONSUMER_SUCCESS,
+  COUNTRY_SELECTED, FETCH_PROVIDERS_SUCCESS, FETCH_VIDEOS_SUCCESS, RECHECK_STATUS_SUCCESS, SIGN_UP_CONSUMER_SUCCESS,
   TOGGLE_SIGN_UP_MODAL
 } from "../actions"
 import {getProvidersBy} from "../utils/getProvidersBy"
 
 const initialState = {
   apiToken: localStorage.getItem('api_token'),
+  user: null,
   providers: null,
   countries: null,
   networks: null,
@@ -35,6 +36,14 @@ export function app(state = initialState, action) {
       return Object.assign({}, state, {
         signUpModal: false,
         authorizeModal: true,
+        user: action.payload.user,
+        apiToken: action.payload.token,
+      })
+
+    case RECHECK_STATUS_SUCCESS:
+      return Object.assign({}, state, {
+        authorizeModal: !action.payload.validated,
+        user: { ...action.payload },
       })
 
     case TOGGLE_SIGN_UP_MODAL:

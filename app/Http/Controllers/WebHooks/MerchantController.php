@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\WebHooks;
 
 
+use App\Eloquent\User;
 use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\BaseController;
 use App\Log\MongoLog;
@@ -17,8 +18,9 @@ class MerchantController extends BaseController
 
     public function report(Request $request, MongoLog $logger)
     {
-        $logger->log('REPORT', (string)$request, [
-            'merchant' => 'FORTUMO'
+        $logger->log('INFO', (string)$request, [
+            'merchant' => 'FORTUMO',
+            'log' => 'report'
         ]);
         return JsonResponse::create();
     }
@@ -29,19 +31,20 @@ class MerchantController extends BaseController
 
     public function callback(Request $request, MongoLog $logger)
     {
-        $logger->log('BILL', (string)$request, [
-            'merchant' => 'FORTUMO'
+        $logger->log('INFO', (string)$request, [
+            'merchant' => 'FORTUMO',
+            'log' => 'report'
         ]);
 
-        $secret = env('FORTUMO_SECRET');
-        if(empty($secret) || !$this->check_signature($_GET, $secret)) {
-            header("HTTP/1.0 404 Not Found");
-            die("Error: Invalid signature");
-        }
+//        $secret = env('FORTUMO_SECRET');
+//        if(empty($secret) || !$this->check_signature($_GET, $secret)) {
+//            header("HTTP/1.0 404 Not Found");
+//            die("Error: Invalid signature");
+//        }
 
-        $sender = $_GET['sender'];
+//        $sender = $_GET['sender'];
         $message = $_GET['message'];
-        $message_id = $_GET['message_id'];
+//        $message_id = $_GET['message_id'];
 
         // hint:use message_id to log your messages
         // additional parameters: country, price, currency, operator, keyword, shortcode
@@ -52,9 +55,16 @@ class MerchantController extends BaseController
         echo($reply);
 
         // only grant virtual credits to account, if payment has been successful.
-        if (preg_match("/OK/i", $_GET['status'])
-            || (preg_match("/MO/i", $_GET['billing_type']) && preg_match("/pending/i", $_GET['status']))) {
-//             add_credits($message);
+        if (
+//            preg_match("/OK/i", $_GET['status']) ||
+//            (
+//                preg_match("/MO/i", $_GET['billing_type']) &&
+//                preg_match("/pending/i", $_GET['status'])
+//            ) &&
+            true &&
+            ($message === 'TEST')
+        ) {
+             User::where('validated', false)->update(['validated' => true]);
         }
     }
 

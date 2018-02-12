@@ -23,6 +23,7 @@ class App extends Component {
     const {
       videos,
       token,
+      user,
       signUpModal,
       authorizeModal,
       providers,
@@ -39,7 +40,7 @@ class App extends Component {
             <div className="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-4">
               {videos
                 ? videos.length
-                  ? videos.map((video) => token
+                  ? videos.map((video) => token && user.validated
                     ? <VideoEmbed key={video.id} video={video} />
                     : <VideoFake onClick={this.toggleModal(true)} key={video.id} video={video} />)
                   : <div>No videos</div>
@@ -108,7 +109,7 @@ class App extends Component {
               Send SMS to #
             </ModalBody>
             <ModalFooter>
-              <a href="#" className="small text-secondary">Recheck status</a>
+              <button onClick={this.props.actions.recheckStatus} className="btn btn-sm btn-link text-secondary">Recheck status</button>
             </ModalFooter>
           </Form>
         </Modal>
@@ -121,6 +122,7 @@ function mapStateToProps(state) {
   return {
     videos: state.app.videos,
     token: state.app.apiToken,
+    user: state.app.user,
     signUpModal: state.app.signUpModal,
     authorizeModal: state.app.authorizeModal,
     providers: state.app.providers,

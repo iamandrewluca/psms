@@ -77,10 +77,23 @@ class AuthenticationController extends ConsumerBaseController
         $user->api_token = str_random(60);
 
         $user->provider()->associate($provider);
-        $user->save();
+        $user->saveOrFail();
 
         return JsonResponse::create([
             'user' => $user,
             'token' => $user->api_token,
         ]);
-    }}
+    }
+
+    public function status(Request $request)
+    {
+        if (!$request->input('token')) {
+            return JsonResponse::create([
+                'STATUS' => 'ERROR',
+                'ERROR' => 'INVALID_TOKEN'
+            ]);
+        }
+
+        return User::where('api_token', $request->input('token'))->firstOrFail();
+    }
+}

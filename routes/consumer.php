@@ -17,6 +17,9 @@ $router->group(['prefix' => '/consumer', 'namespace' => 'Consumer'], function ()
      */
     $router->post('/signup', 'AuthenticationController@signUp');
 
+
+    $router->post('/status', 'AuthenticationController@status');
+
     /**
      * @SWG\Get(path="/api/v1/consumer/videos",
      *   summary="Gets a list of videos",

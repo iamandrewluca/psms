@@ -107,7 +107,7 @@ export const signUpConsumer = (e) => async (dispatch) => {
 
   dispatch(signUpConsumerRequest())
 
-  let err, response
+  let err, response, data
 
   [err, response] = await to(fetch('/api/v1/consumer/signup', {
     method: 'POST',
@@ -125,7 +125,9 @@ export const signUpConsumer = (e) => async (dispatch) => {
     return dispatch(signUpConsumerFailure())
   }
 
-  return dispatch(signUpConsumerSuccess(response))
+  [err, data] = await to(response.json())
+
+  return dispatch(signUpConsumerSuccess(data))
 }
 
 export const COUNTRY_SELECTED = "COUNTRY_SELECTED"
@@ -133,3 +135,51 @@ export const countrySelected = (data) => ({
   type: COUNTRY_SELECTED,
   payload: data
 })
+
+
+export const RECHECK_STATUS_REQUEST = "RECHECK_STATUS_REQUEST"
+export const RECHECK_STATUS_SUCCESS = "RECHECK_STATUS_SUCCESS"
+export const RECHECK_STATUS_FAILURE = "RECHECK_STATUS_FAILURE"
+
+
+export const recheckStatusRequest = () => ({
+  type: RECHECK_STATUS_REQUEST,
+})
+
+export const recheckStatusSuccess = (response) => ({
+  type: RECHECK_STATUS_SUCCESS,
+  payload: response,
+})
+
+export const recheckStatusFailure = () => ({
+  type: RECHECK_STATUS_FAILURE,
+})
+
+export const recheckStatus = (e) => async (dispatch, getState) => {
+  e.preventDefault()
+
+  dispatch(recheckStatusRequest())
+
+  const state = getState()
+  console.log(state)
+
+  let err, response, data
+
+  [err, response] = await to(fetch('/api/v1/consumer/status', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      token: state.app.apiToken,
+    }),
+  }))
+
+  if (err || response.status !== 200) {
+    return dispatch(recheckStatusFailure())
+  }
+
+  [err, data] = await to(response.json())
+
+  return dispatch(recheckStatusSuccess(data))
+}
