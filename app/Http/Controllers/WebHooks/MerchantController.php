@@ -26,7 +26,9 @@ class MerchantController extends BaseController
     }
 
     public function msisdn(Request $request, MongoLog $logger) {
-        $logger->log('MSISDN', (string)$request);
+        $logger->log('INFO', (string)$request, [
+            'log' => 'msisdn'
+        ]);
     }
 
     public function callback(Request $request, MongoLog $logger)
