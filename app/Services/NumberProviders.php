@@ -36,8 +36,8 @@ class NumberProviders
                 $numberProvider->network = (string)$provider["name"];
                 $numberProvider->country = (string)$country["name"];
                 $numberProvider->mcc = $mcc;
-                $numberProvider->iso = $mcc;
-                $numberProvider->country_code = (string)$country["code"];
+                $numberProvider->iso = (string)$country["code"];
+                $numberProvider->country_code = $mcc;
                 $numberProvider->mnc = $mnc;
                 $numberProvider->flow = 'SMS';
                 $allProviders[] = $numberProvider;

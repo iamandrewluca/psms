@@ -1,6 +1,7 @@
 import React from 'react'
 import AddVideo from "../AddVideo"
 import VideoList from "../VideoList"
+import Options from "./Options"
 
 class Home extends React.Component {
 
@@ -94,13 +95,14 @@ class Home extends React.Component {
 
   render() {
     return (
-      <div>
+      <React.Fragment>
         <AddVideo loading={this.state.loading} onSubmit={this.onSubmit} />
         <VideoList
           videos={this.state.videos}
           deleteVideo={this.deleteVideo}
         />
-      </div>
+        <Options />
+      </React.Fragment>
     )
   }
 }

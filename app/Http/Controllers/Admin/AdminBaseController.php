@@ -15,6 +15,6 @@ class AdminBaseController extends BaseController
 
     public function updateProviders(NumberProviders $service)
     {
-        return $service->update();
+        $service->update();
     }
 }

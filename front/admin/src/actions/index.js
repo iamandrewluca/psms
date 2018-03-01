@@ -1,4 +1,5 @@
 import to from 'await-to-js'
+import {RSAA} from "redux-api-middleware"
 
 export const SIGN_IN_REQUEST = "SIGN_IN_REQUEST"
 export const SIGN_IN_SUCCESS = "SIGN_IN_SUCCESS"
@@ -51,3 +52,18 @@ export const signIn = (e) => async (dispatch) => {
   localStorage.setItem('admin-api-token', token)
   dispatch(signInSuccess(token))
 }
+
+export const UPDATE_PROVIDERS_REQUEST = "UPDATE_PROVIDERS_REQUEST"
+export const UPDATE_PROVIDERS_SUCCESS = "UPDATE_PROVIDERS_SUCCESS"
+export const UPDATE_PROVIDERS_FAILURE = "UPDATE_PROVIDERS_FAILURE"
+
+export const updateProviders = () => ({
+  [RSAA]: {
+    endpoint: '/api/v1/admin/updateProviders',
+    method: 'GET',
+    headers: {
+      'Api-Token': localStorage.getItem('admin-api-token'),
+    },
+    types: [UPDATE_PROVIDERS_REQUEST, UPDATE_PROVIDERS_SUCCESS, UPDATE_PROVIDERS_FAILURE]
+  }
+})

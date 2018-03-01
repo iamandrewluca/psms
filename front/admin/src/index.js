@@ -16,6 +16,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import App from "./App"
 
 import * as reducers from './reducers'
+import {apiMiddleware} from "redux-api-middleware"
 
 const historySettings = {}
 
@@ -25,7 +26,7 @@ if (process.env.NODE_ENV === `production`) {
 
 const history = createHistory(historySettings)
 
-const middlewares = [routerMiddleware(history), thunk]
+const middlewares = [routerMiddleware(history), thunk, apiMiddleware]
 
 if (process.env.NODE_ENV === `development`) {
   middlewares.push(logger);
