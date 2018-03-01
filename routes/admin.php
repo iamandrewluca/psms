@@ -9,6 +9,8 @@ $router->group(['prefix' => '/admin', 'namespace' => 'Admin'], function () use (
 
         $router->post('/signout', 'AuthenticationController@signOut');
 
+        $router->get('/updateProviders', 'AdminBaseController@updateProviders');
+
         // Categories
         $router->get('/categories', 'CategoriesController@list');
         $router->post('/categories', 'CategoriesController@create');

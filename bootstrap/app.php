@@ -57,6 +57,7 @@ if ($app->environment() !== 'production') {
 }
 
 $app->configure('swagger-lume');
+$app->configure('merchant');
 
 /*
 |--------------------------------------------------------------------------
